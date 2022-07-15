@@ -1,0 +1,65 @@
+{% load static %}
+<link href="{% static 'tracker/css/styles.css' %}" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/bootstrap.min.css' %}">
+<style>
+    label {
+      padding-right:3px;
+    }
+    </style>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="{% url 'tracker:home' %}">Weight Tracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'tracker:home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'tracker:logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Enter an exercise name before clicking "Get Suggestions"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<section class="bg-light py-5">
+    <div class="container">
+        <h1>Create Exercise</h1>
+    </div>
+    <div class="container px-5 my-5 px-5">
+        
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <form method="POST" id="contactForm">
+                    {% csrf_token %} {{form.as_p}}
+                    <input type="submit" value="Save" />
+                </form>
+                <button class="btn btn-primary" onclick="myFunction()">Get Suggestions</button>
+                <form action="{% url 'tracker:exercise_list' %}" id="contactForm" style="display:inline">
+                    <input type="submit" value="Cancel" />
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'tracker/js/index.js' %}"></script>
+
+
+    
+    
+

@@ -1,0 +1,118 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Weight Tracker</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'tracker/assets/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'tracker/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="#!">Weight Tracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'tracker:logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center my-5">
+                            <h1 class="display-5 fw-bolder text-white mb-2">{% if user.is_authenticated %} Hello, {{user.username}}! {% else %} Welcome! Please signup or login
+                                 {% endif %}</h1>
+                            <p class="lead text-white-50 mb-4">Weight Tracker allows you to easily manage your workout data so you can save time in the gym</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                {% if user.is_authenticated %}
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'tracker:exercise_list' %}">View Workout
+                                    </a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="#">View Progress
+                                        </a>
+                                    {% else %}
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'tracker:login' %}">Login
+                                    </a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="{% url 'tracker:signup' %}">Signup
+                                    </a>
+                                     {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Features section-->
+        <section class="py-5 border-bottom" id="features">
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h4 fw-bolder">Prepare Workouts </h2>
+                        <p>Write out your workout plan ahead of time with Weight Tracker. Want to plan for the whole week? No problem. Weight Tracker allows you to plan any workout on any day. </p>
+                        {% if user.is_authenticated %} <a class="text-decoration-none" href="{% url 'tracker:exercise_list' %}">
+                            Plan a workout
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                                 {% endif %}
+                        
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <h2 class="h4 fw-bolder">Auto-Suggestions</h2>
+                        <p>Weight Tracker offers up-to-date auto-suggestions when you go in to complete your workout. It will always push you to do a little bit more than last time to stimulate muscle growth.</p>
+                        {% if user.is_authenticated %} <a class="text-decoration-none" href="#!">
+                            Start a workout
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                                 {% endif %}
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h4 fw-bolder">View Progress</h2>
+                        <p>We all want to see progress in the gym. Weight Tracker offers insightful metrics on how you are progressing with your program, so you can make decisions on how you spend your time in the gym. </p>
+                        {% if user.is_authenticated %} <a class="text-decoration-none" href="#!">
+                            View Progress
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                                 {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+       
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Weight Tracker</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
+
+
+
+
+
+<!-- <a href="{% url 'tracker:login' %}">Login</a> -->
